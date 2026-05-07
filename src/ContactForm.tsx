@@ -11,8 +11,8 @@ const ContactForm = () => {
     
     setStatus('sending');
 
-    
-    const webhookUrl = "https://discord.com/api/webhooks/1502053985035751445/a-YCbKzplTwAZ8Bf43QFV4lLF2xwZvmbLZw45T6vqUbOI74qvLLysgUH35N_Q1L5Cqqo"; 
+    // Your new Cloudflare Worker middleman
+    const webhookUrl = "https://club-website.tnewman057.workers.dev"; 
 
     try {
       const response = await fetch(webhookUrl, {
@@ -20,8 +20,8 @@ const ContactForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        // Discord requires the key to be exactly "content"
-        body: JSON.stringify({ content: message }), 
+        // We send "message" to the Worker, and the Worker sends "content" to Discord
+        body: JSON.stringify({ message: message }), 
       });
 
       if (response.ok) {
