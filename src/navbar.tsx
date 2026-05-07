@@ -12,14 +12,13 @@ const Navbar = memo(({ setPage }: NavbarProps) => {
 
   const navigate = useCallback((page: number) => {
     setPage(page);
-    setIsMobileMenuOpen(false); // Close sidebar when navigating
+    setIsMobileMenuOpen(false);
   }, [setPage]);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
   };
 
-  // Apply theme to the root HTML element so your whole app can use these variables
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);

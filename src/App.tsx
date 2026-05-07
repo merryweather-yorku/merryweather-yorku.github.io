@@ -19,15 +19,10 @@ function App() {
 }
 
 function Landing() {
-  const [count, setCount] = useState(0);
   return (
     <>
       <h1>Welcome to Merryweather Technologies</h1>
-      <p>Innovating at the intersection of weather analytics and smart campus solutions.</p>
-      <div className="card">
-        <button onClick={() => setCount(c => c + 1)}>Clicks: {count}</button>
-        <p>Edit src/App.tsx and save to test HMR.</p>
-      </div>
+      <p>We are an Engineering design team with national defense at the heart of all of our projects.</p>
     </>
   );
 }
@@ -37,11 +32,7 @@ function AboutPage() {
     <>
       <h1>About Merryweather Technologies</h1>
       <p>
-        Founded at York University, our mission is to harness weather data to improve campus life,
-        from energy savings to event planning.
-      </p>
-      <p>
-        Our team blends expertise in meteorology, data science, and software engineering to deliver actionable insights.
+        Founded at York University.
       </p>
     </>
   );
@@ -49,9 +40,8 @@ function AboutPage() {
 
 function ProjectsPage() {
   const projects = [
-    { name: 'Campus Climate Dashboard', description: 'Real‑time weather visualisation for campus buildings.' },
-    { name: 'Predictive Irrigation Scheduler', description: 'AI‑driven watering plans for university gardens.' },
-    { name: 'Event Weather Advisor', description: 'Smart notifications for outdoor events based on forecasts.' },
+    { name: 'MW1: Military Radio', description: 'A military-style radio equipped with the newest features and engineered to last.' },
+    { name: 'Template', description: 'Description here:' }
   ];
   return (
     <>
@@ -73,7 +63,7 @@ function JoinPage() {
       <h1>Join Our Team</h1>
       <p>We're always looking for passionate students and researchers.</p>
       <p>
-        Submit your interest via the university's internal portal or email us at <a href="mailto:tech@yr.edu">tech@yr.edu</a>.
+        Submit your interest via <a href="">Discord</a>.
       </p>
     </>
   );
