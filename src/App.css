@@ -1,5 +1,35 @@
-#root {
-  margin: 0;
-  padding: 1rem;
+/* Global app styling */
+html, body, #root {
+  height: 100%;
   width: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: #141414;
+  color: #f0f0f0;
+}
+
+/* Main container to position navbar and page content */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1;
+  padding: 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: #e0e0e0;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
