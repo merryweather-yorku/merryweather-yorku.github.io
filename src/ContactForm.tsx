@@ -43,7 +43,8 @@ const ContactForm = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         disabled={status === 'sending'}
-        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc', resize: 'vertical', height: '120px', width: "500px"}}
+        required
       />
       <button 
         type="submit" 
