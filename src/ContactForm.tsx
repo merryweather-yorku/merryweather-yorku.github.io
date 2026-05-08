@@ -12,7 +12,7 @@ const ContactForm = () => {
     setStatus('sending');
 
     // Your new Cloudflare Worker middleman
-    const webhookUrl = "https://club-website.tnewman057.workers.dev/"; 
+    const webhookUrl = "https://discord-proxy-worker.tnewman057.workers.dev"; 
 
     try {
       const response = await fetch(webhookUrl, {
