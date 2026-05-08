@@ -38,8 +38,7 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px' }}>
-      <input
-        type="text"
+      <textarea
         placeholder="Enter a message here:"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
