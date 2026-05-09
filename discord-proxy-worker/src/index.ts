@@ -25,11 +25,13 @@ export default {
 
 		try {
 			// 3. Parse the JSON sent from your React app
-			const { message } = await request.json() as { message: string };
+			const { name, email, company, message } = await request.json() as { name: string, email: string, company: string, message: string };
 
-			if (!message) {
-				return new Response("No message provided", { status: 400, headers: corsHeaders });
+			if (!name || !email || !company || !message) {
+				return new Response("Missing required fields", { status: 400, headers: corsHeaders });
 			}
+
+			const formattedMessage = `**New Contact Form Submission**\n**Name:** ${name}\n**Email:** ${email}\n**Company/Organization:** ${company}\n**Message:**\n${message}`;
 
 			// 4. Send the data to Discord using the Secret Webhook URL
 			const discordResponse = await fetch(env.DISCORD_WEBHOOK_URL, {
@@ -39,7 +41,7 @@ export default {
 				},
 				// Discord expects the text to be inside the "content" field
 				body: JSON.stringify({
-					content: message,
+					content: formattedMessage,
 				}),
 			});
 
