@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import type { WheelEvent } from 'react';
 import { projectsData } from '../data/projects';
 import './ProjectsPage.css';
 
@@ -25,43 +23,13 @@ export default function ProjectsPage({ onSelectProject }: ProjectsPageProps) {
     });
   }
 
-  const totalRows = paddedProjects.length / 3;
-  // If we show 3 rows on screen at a time, max scroll is totalRows - 3
-  const maxScrollRow = Math.max(0, totalRows - 3);
-
-  const [scrollRow, setScrollRow] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect mobile
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
-    if (isMobile) return; // Native scrolling on mobile
-    
-    // Prevent default scroll handled by CSS on the container if needed, 
-    // but React wheel event is passive. We just update state.
-    if (e.deltaY > 20) {
-      setScrollRow(prev => Math.min(prev + 1, maxScrollRow));
-    } else if (e.deltaY < -20) {
-      setScrollRow(prev => Math.max(prev - 1, 0));
-    }
-  };
-
   return (
-    <div className="projects-container fast-fade-in" onWheel={handleWheel}>
+    <div className="projects-container fast-fade-in">
       <h1 className="page-title">Our Projects</h1>
       <p className="projects-subtitle">Scroll to explore our engineering initiatives.</p>
       
       <div className="projects-grid-wrapper">
-        <div 
-          className="projects-grid"
-          style={!isMobile ? { transform: `translateY(calc(${scrollRow} * -(min(220px, 30vh) + 1.5rem)))` } : {}}
-        >
+        <div className="projects-grid">
           {paddedProjects.map((p, i) => (
             <div 
               key={p.id} 

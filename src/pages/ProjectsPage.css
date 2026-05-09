@@ -13,19 +13,19 @@
 
 .projects-grid-wrapper {
   flex: 1;
-  overflow: hidden; /* Hide cards outside the 3 visible rows */
+  overflow-y: auto; /* Enable native vertical scrolling */
   position: relative;
   padding: 1rem;
   mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  scroll-snap-type: y mandatory; /* Enable scroll snapping */
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  /* Each row is min(220px, 30vh) + 1.5rem gap as defined in the TSX inline style */
+  /* Each row is min(220px, 30vh) + 1.5rem gap */
   grid-auto-rows: min(220px, 30vh);
 }
 
@@ -38,6 +38,8 @@
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   animation: slideFadeUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  scroll-snap-align: start; /* Snap to the top of the wrapper */
+  scroll-margin-top: 1rem; /* Account for wrapper padding */
 }
 
 .project-card.active {
