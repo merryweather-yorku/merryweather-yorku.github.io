@@ -1,0 +1,92 @@
+.landing-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  min-height: 70vh;
+}
+
+.landing-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.landing-title {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  background: linear-gradient(135deg, var(--app-text), #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slideFadeUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.landing-subtitle {
+  font-size: 1.25rem;
+  color: var(--app-text);
+  opacity: 0.8;
+  max-width: 500px;
+  margin: 0;
+  animation: slideFadeUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s backwards;
+}
+
+.landing-cta {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: slideFadeUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s backwards;
+}
+
+.landing-cta:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.landing-hero-image {
+  flex: 1;
+  max-width: 50%;
+  animation: slideFadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards;
+}
+
+.landing-hero-image img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.landing-hero-image img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  .landing-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .landing-content {
+    align-items: center;
+  }
+
+  .landing-title {
+    font-size: 3rem;
+  }
+
+  .landing-hero-image {
+    max-width: 100%;
+  }
+}

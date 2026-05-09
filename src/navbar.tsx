@@ -4,9 +4,10 @@ import logo from './assets/logo_text.png';
 
 type NavbarProps = {
   setPage: (page: number) => void;
+  hideLinks?: boolean;
 };
 
-const Navbar = memo(({ setPage }: NavbarProps) => {
+const Navbar = memo(({ setPage, hideLinks }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -41,17 +42,19 @@ const Navbar = memo(({ setPage }: NavbarProps) => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="navbar-links desktop-only">
-        {pages.map((p) => (
-          <button
-            key={p.idx}
-            className="nav-button modern"
-            onClick={() => navigate(p.idx)}
-          >
-            {p.name}
-          </button>
-        ))}
-      </div>
+      {!hideLinks && (
+        <div className="navbar-links desktop-only">
+          {pages.map((p) => (
+            <button
+              key={p.idx}
+              className="nav-button modern"
+              onClick={() => navigate(p.idx)}
+            >
+              {p.name}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="navbar-actions">
         {/* Theme Toggle Button */}
@@ -64,35 +67,39 @@ const Navbar = memo(({ setPage }: NavbarProps) => {
         </button>
 
         {/* Mobile Hamburger Menu */}
-        <button
-          className="icon-button mobile-only"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+        {!hideLinks && (
+          <button
+            className="icon-button mobile-only"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        )}
       </div>
 
       {/* Mobile Sidebar */}
-      <div className={`mobile-sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
-        <button className="icon-button close-menu" onClick={() => setIsMobileMenuOpen(false)}>
-           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <div className="sidebar-links">
-          {pages.map((p) => (
-            <button
-              key={p.idx}
-              className="nav-button modern"
-              onClick={() => navigate(p.idx)}
-            >
-              {p.name}
-            </button>
-          ))}
+      {!hideLinks && (
+        <div className={`mobile-sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+          <button className="icon-button close-menu" onClick={() => setIsMobileMenuOpen(false)}>
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+          <div className="sidebar-links">
+            {pages.map((p) => (
+              <button
+                key={p.idx}
+                className="nav-button modern"
+                onClick={() => navigate(p.idx)}
+              >
+                {p.name}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Dark Overlay for when sidebar is open */}
-      {isMobileMenuOpen && (
+      {!hideLinks && isMobileMenuOpen && (
         <div className="menu-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
       )}
     </nav>
